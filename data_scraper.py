@@ -74,17 +74,25 @@ if __name__ == '__main__':
     API_KEY = 'AIzaSyBC2zIVu_9EQauhq2aYZdoUuauvvP2blHk'
     scraper = YouTubeDataScraper(API_KEY)
     
-    collab_gaming = scraper.get_empirical_data("Gaming Collaboration", num_videos=50)
-    drama_gaming = scraper.get_empirical_data("Gaming Beef Drama", num_videos=50)
+    niches = {
+        "Gaming": ("Gaming Collaboration", "Gaming Beef Drama"),
+        "Tech Review": ("Tech Review Collaboration", "Tech Review Drama Beef"),
+        "Beauty": ("Beauty Makeup Collaboration", "Beauty Makeup Drama Apology"),
+        "Finance": ("Finance Crypto Collaboration", "Finance Crypto Scam Drama"),
+        "Fitness": ("Fitness Collab Workout", "Fitness Fake Weights Drama"),
+        "Politics": ("Political Debate Collaboration", "Political Outrage Drama")
+    }
     
-    collab_tech = scraper.get_empirical_data("Tech Review Collaboration", num_videos=50)
-    drama_tech = scraper.get_empirical_data("Tech Review Drama Beef", num_videos=50)
-    
+    results = {}
+    import json
+    for niche, (collab_query, drama_query) in niches.items():
+        results[niche] = {
+            "Collab": scraper.get_empirical_data(collab_query, num_videos=50),
+            "Drama": scraper.get_empirical_data(drama_query, num_videos=50)
+        }
+        
     with open('output.txt', 'w', encoding='utf-8') as f:
-        f.write("--- Empirical Data Averages ---\n")
-        f.write(f"Gaming Collaboration: {collab_gaming}\n")
-        f.write(f"Gaming Beef/Drama: {drama_gaming}\n")
-        f.write(f"Tech Collaboration: {collab_tech}\n")
-        f.write(f"Tech Beef/Drama: {drama_tech}\n")
+        f.write("--- Global Six-Niche Empirical Data Averages ---\n")
+        f.write(json.dumps(results, indent=4))
         
     print("Scraping completed and saved to output.txt")
