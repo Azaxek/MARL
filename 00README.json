@@ -1,0 +1,16 @@
+{
+   "stamp" : true,
+   "sources" : [
+      {
+         "usage" : "toplevel",
+         "filename" : "Game_Theory_in_Social_Media.tex"
+      },
+      {
+         "usage" : "ignore",
+         "filename" : "document.pdf"
+      }
+   ],
+   "process" : {
+      "compiler" : "pdflatex"
+   }
+}
