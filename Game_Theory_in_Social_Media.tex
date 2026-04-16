@@ -1,17 +1,47 @@
-\documentclass[10pt,journal,compsoc]{IEEEtran}
+\documentclass[12pt,letterpaper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{mathptmx}
+\usepackage{lineno}
 \usepackage{amsmath, amssymb, graphicx, caption, subcaption}
 \usepackage{booktabs}
 \usepackage{multirow}
 \usepackage{url}
 \usepackage{float}
+\usepackage[raggedright]{titlesec}
 
-\title{Game Theory in Social Media: A Continuous Stackelberg Model of Algorithmic Incentives and Multi-Agent Influencer Dynamics}
-\author{By Arjan Khadka \\
-	\texttt{arjank898@gmail.com}}
+\raggedright
+\setlength{\parindent}{0.5in}
 
 \begin{document}
-	
-\maketitle
+
+\begin{titlepage}
+\noindent
+\textbf{\Large Game Theory in Social Media: A Continuous Stackelberg Model of Algorithmic Incentives and Multi-Agent Influencer Dynamics}
+
+\vspace{1cm}
+
+\noindent
+\textbf{Authors:} \\
+Arjan Khadka$^1$, [UT Austin Co-Author Name]$^2$
+
+\vspace{0.5cm}
+
+\noindent
+\textbf{Affiliations:} \\
+$^1$ {[Your Department, Your University/Organization, City, State, Country]} \\
+$^2$ Department of Computer Science, The University of Texas at Austin, Austin, TX, USA
+
+\vspace{1cm}
+
+\noindent
+\textbf{Submission Administrator:} \\
+{[UT Austin Co-Author Name]} \\
+{[Co-Author Email]@utexas.edu}
+
+\vspace{1cm}
+\end{titlepage}
+
+\linenumbers
 
 \begin{abstract}
 Social media platforms represent hyper-competitive ecosystems where influencers constantly optimize strategic decisions to maximize algorithmic engagement. These decisions range from mutually beneficial cross-collaborations to highly publicized inter-personal conflicts or ``beefing.'' In this paper, we propose a mathematical formalization of this ecosystem utilizing a continuous Stackelberg game. The platform algorithm operates as a rational leader, setting exposure rules by dynamically weighting specific user engagement metrics (click-through rate, watch-time retention, and distribution via sharing). Content creators operate as responding followers, optimizing a continuous ``Drama Index'' parameter to maximize utility bounded by the persistent threat of sponsor withdrawal. Utilizing a comprehensive extraction of empirical data via the YouTube API ($N=100$), we establish real-world statistical benchmarks that fundamentally inform our utility functions. We extend this static mathematical framing by constructing a Multi-Agent Reinforcement Learning (MARL) environment, executing a 10,000 epoch simulation. We extract precise phase diagrams and scatter convergence dynamics, proving analytically and computationally how subtle algorithmic priority shifts actuate massive, synchronized population migrations between collaborative and adversarial equilibrium states. 
@@ -70,21 +100,21 @@ To computationally derive the optimal algorithmic response state, a rational cre
 
 By solving Equation \ref{eq:derivative} explicitly, we prove theoretically that $d^*$ (the optimal drama position for a creator given any algorithmic prioritization scalar) deterministically maps to exactly one strategy, verifying the robust presence of a single equilibrium point given static bounds \cite{mas1995microeconomic}. Table \ref{tab:sensitivity} isolates these calculated bounds under various historical algorithmic schemas.
 
-\begin{table*}[htbp]
+\begin{table}[htbp]
 	\centering
 	\caption{Parameter Sensitivity Matrix. Displays the optimal Drama Index strategy calculated from our derived partial differential bounds given arbitrary algorithmic preference shifts. A single variable shift mechanically overrides the entire strategic ecosystem.}
 	\label{tab:sensitivity}
 	\begin{tabular}{l c c c l l}
 		\toprule
-		\textbf{Algorithmic Priorities} & $\alpha$ (Clicks) & $\beta$ (Retention) & $\gamma$ (Virality) & $\delta$ (Sponsors) & \textbf{Resulting Population $d^*$ Eq.} \\
+		\textbf{Algorithmic Priorities} & $\alpha$ & $\beta$ & $\gamma$ & $\delta$ & \textbf{Resulting Population $d^*$ Eq.} \\
 		\midrule
-		\textbf{Watch-Time Centric Era} & 0.5 & 3.0 & 0.5 & 5.0 (Strict) & $d^* \approx 0.05$ (Highly Collaborative) \\
-		\textbf{Balanced Modern Feed} & 1.5 & 1.5 & 1.5 & 2.5 (Moderate) & $d^* \approx 0.38$ (Calculated Agitation) \\
-		\textbf{Short-Form Virality Boom} & 3.5 & 0.2 & 2.5 & 1.0 (Lenient) & $d^* \approx 0.89$ (Intense Beefing/Conflict) \\
-		\textbf{Demonetization Event} & 4.0 & 0.1 & 3.0 & \textbf{20.0} (Nuclear) & $d^* \approx 0.12$ (Forced Pacifism) \\
+		\textbf{Watch-Time Centric} & 0.5 & 3.0 & 0.5 & 5.0  & $d^* \approx 0.05$ (Collaborative) \\
+		\textbf{Balanced Modern} & 1.5 & 1.5 & 1.5 & 2.5  & $d^* \approx 0.38$ (Calculated Agitation) \\
+		\textbf{Virality Boom} & 3.5 & 0.2 & 2.5 & 1.0  & $d^* \approx 0.89$ (Intense Conflict) \\
+		\textbf{Demonetization Event} & 4.0 & 0.1 & 3.0 & \textbf{20.0} & $d^* \approx 0.12$ (Forced Pacifism) \\
 		\bottomrule
 	\end{tabular}
-\end{table*}
+\end{table}
 
 \section{Empirical Validation via YouTube Data API}
 
@@ -115,30 +145,44 @@ Crucially, the Like Ratio is effectively halved for conflict-oriented content ($
 
 \begin{figure}[htbp]
 	\centering
-	\includegraphics[width=0.9\linewidth]{graphs/phase_diagram.png}
+	\includegraphics[width=0.7\linewidth]{graphs/phase_diagram.png}
 	\caption{Phase Diagram highlighting the boundary line between Collaborative ($d \sim 0$) and Adverse ($d \sim 1$) equilibria when Algorithmic Clicks ($\alpha$) confront Sponsor Penalties ($\delta$). Sourced natively from our parameter sweep matrix.}
 	\label{fig:phase}
 \end{figure}
 
-\begin{figure*}[htbp]
+\begin{figure}[htbp]
 	\centering
-	\includegraphics[width=0.48\textwidth]{graphs/utility_curves.png}
-	\hfill
-	\includegraphics[width=0.48\textwidth]{graphs/scatter_convergence.png}
-	\caption{\textbf{Left:} Mapped normalized Creator Utility ($U$) against Strategy Choice ($d$) under two opposite algorithmic regimes. \textbf{Right:} Continuous scatter plot of 100 localized Deep-RL Creators traversing strategy space over 10,000 epochs. A black indicator boundary at epoch 5000 signifies the macro-algorithm radically altering internal mathematical weights, forcing an immediate, panicked population migration to the extreme upper bounds of the hostility continuum.}
+	\includegraphics[width=0.7\textwidth]{graphs/utility_curves.png}
+	\caption{Mapped normalized Creator Utility ($U$) against Strategy Choice ($d$) under two opposite algorithmic regimes.}
+	\label{fig:utility}
+\end{figure}
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.7\textwidth]{graphs/scatter_convergence.png}
+	\caption{Continuous scatter plot of 100 localized Deep-RL Creators traversing strategy space over 10,000 epochs. A black indicator boundary at epoch 5000 signifies the macro-algorithm radically altering internal mathematical weights, forcing an immediate, panicked population migration to the extreme upper bounds of the hostility continuum.}
 	\label{fig:convergence}
-\end{figure*}
+\end{figure}
 
 \section{Multi-Agent Reinforcement Learning (MARL) Simulation Dynamics}
-Our empirical query array perfectly contextualizes a single static snapshot of modern platforms, but online networks are deeply dynamic \cite{young2015strategic}. To simulate the systemic temporal evolution of these ecosystem forces—and to scientifically visualize macro-transitions—we engineered a Multi-Agent Reinforcement Learning Python architecture \footnote{The complete deep learning python simulations, graph rendering scripts, and API extraction tools utilized for this manuscript are structurally open-sourced and indexed at: \url{https://github.com/Azaxek/social-media-marl-simulation}}. 
+Our empirical query array perfectly contextualizes a single static snapshot of modern platforms, but online networks are deeply dynamic \cite{young2015strategic}. To simulate the systemic temporal evolution of these ecosystem forces—and to scientifically visualize macro-transitions—we engineered a Multi-Agent Reinforcement Learning Python architecture. 
 
 To execute the protocol, 100 uniquely parameterized \textit{Creator Agents} were loaded into the simulation geometry. These agents were distributed uniformly across the entire strategy continuum $d \in [0, 1]$. Above this network plane, 1 \textit{Algorithm Agent} exerted global tensor control over the reward vectors ($\alpha, \beta, \gamma$). 
 
 The simulation processed for exactly $10,000$ sequential epochs. During processing, autonomous creators utilized a learning rate of $\text{lr} = 0.05$ evaluating noisy micro-gradient ascents based directly on their derived calculus. The computational parameter sweep was specifically hard-coded to stress-test platform resilience. At exactly epoch $t=5000$, the master Algorithm Agent aggressively re-calibrated. It mathematically abandoned Watch Time rewards ($\beta \rightarrow 0.2$) and saturated the network economy with gross Virality rewards ($\alpha \rightarrow 2.5, \gamma \rightarrow 2.0$), flawlessly simulating the chaotic platform shifts experienced during the deployment of short-form algorithmic vertical video formats \cite{verwiebe2024mercurial}.
 
-As rigorously documented in the multi-generational convergence map (see Figure \ref{fig:convergence}, right panel), the creator population was initially stabilized exclusively within a Collaborative Equilibrium ($d < 0.1$). Visually instantaneously following the algorithmic coefficient shift, the massive swarm of agents collectively abandoned their local maxima, flooded across the dimensional grid, and stabilized permanently in a deeply adverse Beefing Equilibrium ($d > 0.8$). 
+As rigorously documented in the multi-generational convergence map (see Figure \ref{fig:convergence}), the creator population was initially stabilized exclusively within a Collaborative Equilibrium ($d < 0.1$). Visually instantaneously following the algorithmic coefficient shift, the massive swarm of agents collectively abandoned their local maxima, flooded across the dimensional grid, and stabilized permanently in a deeply adverse Beefing Equilibrium ($d > 0.8$). 
 
 This explicit visualization (supported by the theoretical state boundaries in Figure \ref{fig:phase}) proves computationally what our mathematical bounds demand algebraically: that behavioral toxicity inside digital environments is almost exclusively governed by algorithmic variable states.
+
+\section{Code \& Data Availability}
+
+The mathematical modeling and empirical scraping within this paper adhere to strictly reproducible standards. All code supporting these findings—including the YouTube Data API extraction tools and the bespoke Multi-Agent Reinforcement Learning Python architecture—is fully open-sourced.
+
+\begin{itemize}
+    \item \textbf{GitHub Repository:} \url{https://github.com/Azaxek/MARL}
+    \item \textbf{Zenodo DOI:} 10.5281/zenodo.xxxxxxx (Placeholder - Pending linking of the GitHub Repo via Zenodo for permanent DOI archival prior to final publication integration).
+\end{itemize}
 
 \section{Conclusion}
 This paper comprehensively advances the scientific framing of social media macro-mechanics. Through the implementation of a continuous bounded equation derivative, our proposed models achieved absolute analytical validity against classical Game Theory architectures. By connecting our localized derivations to massive structural permutations gathered empirically via the YouTube API, we grounded purely abstract mathematical sociology firmly into modern, irrefutable network behavioral statistics. 
@@ -152,7 +196,6 @@ Ultimately, our 10,000 epoch multi-agent learning simulation visually proved tha
 	\bibitem{goldfarb2011} Goldfarb, A., \& Tucker, C. (2011). Online Display Advertising: Targeting and Obtrusiveness. \textit{Marketing Science}, 30(3), 389--404.
 	\bibitem{ferrara2016} Ferrara, E., Varol, O., Davis, C., Menczer, F., \& Flammini, A. (2016). The rise of social bots. \textit{Communications of the ACM}, 59(7), 96--104.
 	\bibitem{tufekci2015} Tufekci, Z. (2015). Algorithmic harms beyond Facebook and Google: Emergent challenges of computational agency. \textit{Colorado Technology Law Journal}, 13, 203--218.
-
 	\bibitem{hron2023modeling} Hron, J., Krauth, K., Jordan, M. I., Kilbertus, N., \& Dean, S. (2023). Modeling Content Creator Incentives on Algorithm-Curated Platforms. \textit{International Conference on Learning Representations (ICLR)}.
 	\bibitem{covington2016deep} Covington, P., Adams, J., \& Sargin, E. (2016). Deep neural networks for YouTube recommendations. \textit{RecSys '16}, 191--198.
 	\bibitem{camerer2004advances} Camerer, C. F., Ho, T.-H., \& Chong, J.-K. (2004). A cognitive hierarchy model of games. \textit{The Quarterly Journal of Economics}, 119(3), 861--898.
