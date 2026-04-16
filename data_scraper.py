@@ -74,9 +74,17 @@ if __name__ == '__main__':
     API_KEY = 'AIzaSyBC2zIVu_9EQauhq2aYZdoUuauvvP2blHk'
     scraper = YouTubeDataScraper(API_KEY)
     
-    collab_data = scraper.get_empirical_data("Gaming Collaboration", num_videos=50)
-    drama_data = scraper.get_empirical_data("Gaming Beef Drama", num_videos=50)
+    collab_gaming = scraper.get_empirical_data("Gaming Collaboration", num_videos=50)
+    drama_gaming = scraper.get_empirical_data("Gaming Beef Drama", num_videos=50)
     
-    print("\n--- Empirical Data Averages ---")
-    print(f"Collaboration: {collab_data}")
-    print(f"Beef/Drama: {drama_data}")
+    collab_tech = scraper.get_empirical_data("Tech Review Collaboration", num_videos=50)
+    drama_tech = scraper.get_empirical_data("Tech Review Drama Beef", num_videos=50)
+    
+    with open('output.txt', 'w', encoding='utf-8') as f:
+        f.write("--- Empirical Data Averages ---\n")
+        f.write(f"Gaming Collaboration: {collab_gaming}\n")
+        f.write(f"Gaming Beef/Drama: {drama_gaming}\n")
+        f.write(f"Tech Collaboration: {collab_tech}\n")
+        f.write(f"Tech Beef/Drama: {drama_tech}\n")
+        
+    print("Scraping completed and saved to output.txt")
