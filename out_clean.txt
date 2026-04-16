@@ -1,6 +1,0 @@
-Fetching real data for keyword: Gaming Collaboration
-Fetching real data for keyword: Gaming Beef Drama
-
---- Empirical Data Averages ---
-Collaboration: {'avg_views': 6045283, 'avg_comments': 2471, 'avg_watch_time': 3.99, 'avg_likes_ratio': 7.0}
-Beef/Drama: {'avg_views': 1118336, 'avg_comments': 2819, 'avg_watch_time': 4.58, 'avg_likes_ratio': 3.8}
