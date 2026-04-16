@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2026.1.2)  15 APR 2026 21:35
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2026.1.2)  15 APR 2026 21:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -444,10 +444,10 @@ L3 programming layer <2025-04-29>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 5315 strings out of 469923
- 90994 string characters out of 5469171
- 480558 words of memory out of 5000000
- 32087 multiletter control sequences out of 15000+600000
+ 5312 strings out of 469923
+ 90946 string characters out of 5469171
+ 480546 words of memory out of 5000000
+ 32084 multiletter control sequences out of 15000+600000
  673211 words of font info for 147 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  57i,9n,65p,1434b,342s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -470,7 +470,7 @@ ino/uplb8a.pfb><C:/Users/Arjan/AppData/Local/Programs/MiKTeX/fonts/type1/urw/pa
 latino/uplr8a.pfb><C:/Users/Arjan/AppData/Local/Programs/MiKTeX/fonts/type1/urw
 /palatino/uplri8a.pfb><C:/Users/Arjan/AppData/Local/Programs/MiKTeX/fonts/type1
 /urw/zapfding/uzdr.pfb>
-Output written on Game_Theory_in_Social_Media.pdf (4 pages, 565825 bytes).
+Output written on Game_Theory_in_Social_Media.pdf (4 pages, 565403 bytes).
 PDF statistics:
  108 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
